@@ -1,0 +1,202 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 10%;
+
+    --primary: 224 76% 53%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 40 6% 96%;
+    --secondary-foreground: 0 0% 10%;
+
+    --muted: 220 9% 94%;
+    --muted-foreground: 0 0% 61%;
+
+    --accent: 40 6% 96%;
+    --accent-foreground: 0 0% 10%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 224 76% 53%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 40 6% 97%;
+    --sidebar-foreground: 0 0% 10%;
+    --sidebar-primary: 224 76% 53%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 60% 97%;
+    --sidebar-accent-foreground: 224 76% 40%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 224 76% 53%;
+    --sidebar-muted: 0 0% 61%;
+
+    /* Custom tokens */
+    --surface-hover: 220 9% 97%;
+    --success: 142 71% 45%;
+    --success-foreground: 0 0% 100%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
+
+    --shadow-subtle: 0 1px 3px rgba(0, 0, 0, 0.08);
+
+    font-family: 'Satoshi', system-ui, sans-serif;
+  }
+
+  .dark {
+    --background: 220 15% 6%;
+    --foreground: 210 20% 93%;
+    --card: 220 15% 9%;
+    --card-foreground: 210 20% 93%;
+    --popover: 220 15% 9%;
+    --popover-foreground: 210 20% 93%;
+    --primary: 224 76% 53%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 220 15% 13%;
+    --secondary-foreground: 210 20% 93%;
+    --muted: 220 12% 14%;
+    --muted-foreground: 215 10% 55%;
+    --accent: 220 15% 13%;
+    --accent-foreground: 210 20% 93%;
+    --destructive: 0 62% 40%;
+    --destructive-foreground: 0 0% 95%;
+    --border: 220 12% 16%;
+    --input: 220 12% 16%;
+    --ring: 224 76% 53%;
+
+    --sidebar-background: 220 15% 7%;
+    --sidebar-foreground: 210 20% 93%;
+    --sidebar-primary: 224 76% 53%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 15% 12%;
+    --sidebar-accent-foreground: 210 20% 93%;
+    --sidebar-border: 220 12% 16%;
+    --sidebar-ring: 224 76% 53%;
+    --sidebar-muted: 215 10% 50%;
+
+    --surface-hover: 220 12% 12%;
+    --success: 142 60% 40%;
+    --success-foreground: 0 0% 100%;
+    --warning: 38 80% 50%;
+    --warning-foreground: 0 0% 100%;
+
+    --shadow-subtle: 0 2px 8px rgba(0, 0, 0, 0.4);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--border)) transparent;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+
+  /* Custom scrollbar — Webkit */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: hsl(var(--border));
+    border-radius: 999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: hsl(var(--muted-foreground) / 0.5);
+  }
+
+  h1, h2, h3, h4 {
+    font-family: 'Satoshi', sans-serif;
+    font-weight: 600;
+    @apply text-foreground;
+  }
+}
+
+@layer utilities {
+  .shadow-subtle {
+    box-shadow: var(--shadow-subtle);
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.2s ease-out;
+  }
+
+  .animate-slide-in-right {
+    animation: slideInRight 0.25s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes slideInRight {
+    from { opacity: 0; transform: translateX(16px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  .dotted-bg {
+    background-image: radial-gradient(circle, hsl(var(--border)) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
+  .notion-input {
+    @apply border-0 border-b border-border rounded-none shadow-none px-0 focus-visible:ring-0 focus-visible:border-primary;
+  }
+}
+
+/* Tiptap / Lex Pilot editor */
+.lex-editor .ProseMirror {
+  min-height: 400px;
+  outline: none;
+  font-size: 0.9375rem;
+  line-height: 1.7;
+}
+.lex-editor .ProseMirror p { margin: 0.25em 0; }
+.lex-editor .ProseMirror h1 { font-size: 1.5em; margin: 0.5em 0; }
+.lex-editor .ProseMirror h2 { font-size: 1.25em; margin: 0.5em 0; }
+.lex-editor .ProseMirror h3 { font-size: 1.1em; margin: 0.5em 0; }
+.lex-editor .ProseMirror ul,
+.lex-editor .ProseMirror ol { padding-left: 1.5em; }
+.lex-editor .ProseMirror li { margin: 0.15em 0; }
+
+.lex-variable {
+  background-color: hsl(48 100% 88%);
+  border-radius: 3px;
+  padding: 1px 4px;
+  font-weight: 500;
+  color: hsl(35 80% 30%);
+}
+.dark .lex-variable {
+  background-color: hsl(48 50% 20%);
+  color: hsl(48 100% 80%);
+}
+
+/* docx-preview overrides */
+.docx-preview-wrapper .docx-wrapper {
+  background: white;
+  padding: 0;
+}
+.docx-preview-wrapper .docx-wrapper > section.docx {
+  box-shadow: none;
+  margin: 0 auto;
+}
