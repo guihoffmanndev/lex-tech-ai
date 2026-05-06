@@ -2,6 +2,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { useWorkflowEngine } from "@/hooks/useWorkflowEngine";
+import posthog from "posthog-js";
 
 export function useVaultActions() {
   const queryClient = useQueryClient();
@@ -57,6 +58,10 @@ export function useVaultActions() {
       toast.success("Status atualizado");
 
       if (result) {
+        posthog.capture("vault_document_status_changed", {
+          from_status: result.previousStatus ?? "",
+          to_status: result.status,
+        });
         executeWorkflows("file_status_changed", {
           file_id: result.fileId,
           file_name: result.fileName ?? "",
@@ -73,6 +78,7 @@ export function useVaultActions() {
       toast.error("Erro ao baixar arquivo");
       return;
     }
+    posthog.capture("vault_document_downloaded", { file_name: fileName });
     const url = URL.createObjectURL(data);
     const a = document.createElement("a");
     a.href = url;

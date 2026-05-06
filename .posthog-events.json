@@ -1,0 +1,62 @@
+[
+  {
+    "event": "user_signed_up",
+    "description": "Fired when a new user successfully creates an account",
+    "file": "src/pages/Registro.tsx"
+  },
+  {
+    "event": "user_logged_in",
+    "description": "Fired when an existing user signs in (email/password or OAuth)",
+    "file": "src/contexts/AuthContext.tsx"
+  },
+  {
+    "event": "upgrade_page_viewed",
+    "description": "Fired when the user visits the upgrade/pricing page — top of the conversion funnel",
+    "file": "src/pages/Upgrade.tsx"
+  },
+  {
+    "event": "checkout_initiated",
+    "description": "Fired when the user clicks to subscribe to a plan and the checkout URL is opened",
+    "file": "src/pages/Upgrade.tsx"
+  },
+  {
+    "event": "checkout_completed",
+    "description": "Fired when the user lands on the post-checkout success page after a successful payment",
+    "file": "src/pages/CheckoutSucesso.tsx"
+  },
+  {
+    "event": "ai_message_sent",
+    "description": "Fired when a user sends a message to the AI legal assistant",
+    "file": "src/pages/AssistenteIA.tsx"
+  },
+  {
+    "event": "ai_conversation_created",
+    "description": "Fired when a new AI conversation is automatically created on the first message",
+    "file": "src/pages/AssistenteIA.tsx"
+  },
+  {
+    "event": "vault_document_uploaded",
+    "description": "Fired when one or more documents are successfully uploaded to the Vault",
+    "file": "src/components/vault/UploadSidebar.tsx"
+  },
+  {
+    "event": "vault_document_downloaded",
+    "description": "Fired when a user downloads a document from the Vault",
+    "file": "src/hooks/useVaultActions.ts"
+  },
+  {
+    "event": "vault_document_status_changed",
+    "description": "Fired when the status of a Vault document is updated",
+    "file": "src/hooks/useVaultActions.ts"
+  },
+  {
+    "event": "lex_pilot_documents_generated",
+    "description": "Fired when Lex Pilot generates one or more legal documents from templates",
+    "file": "src/components/lex-pilot/GerarDocumentosTab.tsx"
+  },
+  {
+    "event": "calculator_calculation_run",
+    "description": "Fired when a user runs a monetary correction calculation in the legal calculator",
+    "file": "src/components/calculadora/civel/CorrecaoMonetariaForm.tsx"
+  }
+]

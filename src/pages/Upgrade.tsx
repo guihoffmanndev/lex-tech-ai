@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Check, Sparkles, Loader2, ArrowLeft, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -8,6 +8,7 @@ import { useAuth } from "@/contexts/AuthContext";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { useTrialStatus } from "@/hooks/useTrialStatus";
+import posthog from "posthog-js";
 
 interface Plan {
   name: string;
@@ -63,6 +64,13 @@ export default function Upgrade() {
   const { trialExpired, daysRemaining, isTrialActive } = useTrialStatus();
   const [loadingPlan, setLoadingPlan] = useState<string | null>(null);
 
+  useEffect(() => {
+    posthog.capture("upgrade_page_viewed", {
+      current_plan: subscription.plan,
+      trial_expired: trialExpired,
+    });
+  }, []);
+
   const handleSelectPlan = async (plan: Plan) => {
     if (subscription.plan === plan.key) {
       try {
@@ -70,7 +78,8 @@ export default function Upgrade() {
         const { data, error } = await supabase.functions.invoke("customer-portal");
         if (error) throw error;
         if (data?.url) window.open(data.url, "_blank");
-      } catch {
+      } catch (err) {
+        posthog.captureException(err, { flow: "customer_portal", plan: plan.key });
         toast.error("Erro ao abrir portal de gerenciamento");
       } finally {
         setLoadingPlan(null);
@@ -79,12 +88,19 @@ export default function Upgrade() {
     }
     try {
       setLoadingPlan(plan.key);
+      posthog.capture("checkout_initiated", {
+        plan: plan.key,
+        plan_name: plan.name,
+        plan_price: plan.price,
+        current_plan: subscription.plan,
+      });
       const { data, error } = await supabase.functions.invoke("create-checkout", {
         body: { plan: plan.key },
       });
       if (error) throw error;
       if (data?.url) window.open(data.url, "_blank");
-    } catch {
+    } catch (err) {
+      posthog.captureException(err, { flow: "create_checkout", plan: plan.key });
       toast.error("Erro ao iniciar checkout");
     } finally {
       setLoadingPlan(null);

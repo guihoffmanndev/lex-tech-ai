@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Scale, Check, Loader2, Eye, EyeOff } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 import { toast } from "sonner";
+import posthog from "posthog-js";
 
 export default function Registro() {
   const navigate = useNavigate();
@@ -28,6 +29,8 @@ export default function Registro() {
     const result = await signup(email, password, name);
     setLoading(false);
     if (result.ok) {
+      posthog.capture("user_signed_up", { name, email });
+      posthog.identify(email, { name, email });
       setSuccess(true);
       toast.success("Conta criada com sucesso!");
     } else {

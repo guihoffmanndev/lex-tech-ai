@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 import DOMPurify from "dompurify";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
+import posthog from "posthog-js";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -124,6 +125,11 @@ export default function GerarDocumentosTab() {
 
       setResults(docs);
       setStep(4);
+      posthog.capture("lex_pilot_documents_generated", {
+        document_count: docs.length,
+        client_count: selClients.length,
+        template_count: selTemplates.length,
+      });
       toast.success(`${docs.length} documento(s) gerado(s) com sucesso!`);
     } catch {
       toast.error("Erro ao gerar documentos");

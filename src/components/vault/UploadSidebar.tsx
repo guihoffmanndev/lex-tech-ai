@@ -5,6 +5,7 @@ import { useFileUpload } from "@/hooks/useFileUpload";
 import { useVaultFolders } from "@/hooks/useVaultFolders";
 import { toast } from "sonner";
 import { Progress } from "@/components/ui/progress";
+import posthog from "posthog-js";
 
 const DOCUMENT_TYPES = ["Contrato", "Petição", "Parecer", "Procuração", "Outro"] as const;
 
@@ -58,6 +59,12 @@ export default function UploadSidebar({ open, onClose, defaultFolderId, initialF
     }
 
     if (successCount > 0) {
+      posthog.capture("vault_document_uploaded", {
+        file_count: successCount,
+        doc_type: docType,
+        has_client: !!clientName,
+        has_folder: !!folderId,
+      });
       toast.success(`${successCount} arquivo(s) enviado(s) com sucesso!`);
       setFiles([]);
       setCustomName("");

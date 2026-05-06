@@ -4,6 +4,7 @@ import chatLogo from "@/assets/chat-logo.png";
 import { streamChat, fileToDataURI, buildUserContent, type FileAttachment } from "@/lib/streamChat";
 import ReactMarkdown from "react-markdown";
 import { toast } from "sonner";
+import posthog from "posthog-js";
 import { useRecentes } from "@/hooks/useRecentes";
 import { useChatConversations } from "@/hooks/useChatConversations";
 import ChatSidebar from "@/components/assistente-ia/ChatSidebar";
@@ -168,6 +169,7 @@ export default function AssistenteIA() {
         const conv = await createConversation.mutateAsync(title);
         convId = conv.id;
         setActiveConvId(convId);
+        posthog.capture("ai_conversation_created", { has_attachment: attachments.length > 0 });
         registrarAcesso.mutate({
           tipo: "conversa_ia",
           item_id: conv.id,
@@ -180,6 +182,12 @@ export default function AssistenteIA() {
         return;
       }
     }
+
+    posthog.capture("ai_message_sent", {
+      has_attachment: attachments.length > 0,
+      attachment_count: attachments.length,
+      message_length: content.length,
+    });
 
     // Save user message (text only for DB)
     try {
@@ -232,7 +240,8 @@ export default function AssistenteIA() {
           toast.error(error);
         },
       });
-    } catch {
+    } catch (err) {
+      posthog.captureException(err, { flow: "ai_chat_stream" });
       setIsLoading(false);
       toast.error("Erro ao conectar com a IA.");
     }

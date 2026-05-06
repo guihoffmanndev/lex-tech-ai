@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 import { CheckCircle, ArrowRight, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import posthog from "posthog-js";
 
 const PLAN_LABELS: Record<string, string> = {
   free: "Free",
@@ -15,6 +16,7 @@ export default function CheckoutSucesso() {
   const navigate = useNavigate();
   const { subscription, refreshSubscription } = useAuth();
   const [refreshing, setRefreshing] = useState(true);
+  const capturedRef = useRef(false);
 
   useEffect(() => {
     // The Stripe webhook is the source of truth for plan changes. Refresh
@@ -35,6 +37,13 @@ export default function CheckoutSucesso() {
       cancelled = true;
     };
   }, [refreshSubscription]);
+
+  useEffect(() => {
+    if (!refreshing && !capturedRef.current) {
+      capturedRef.current = true;
+      posthog.capture("checkout_completed", { plan: subscription.plan });
+    }
+  }, [refreshing, subscription.plan]);
 
   const planLabel = PLAN_LABELS[subscription.plan] ?? subscription.plan;
 
