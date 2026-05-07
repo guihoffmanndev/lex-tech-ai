@@ -181,6 +181,11 @@ export function AppSidebar({ activePage, collapsed, onToggleCollapse }: AppSideb
                     {!collapsed && (
                       <span className="flex-1 text-left flex items-center gap-1.5">
                         {item.label}
+                        {item.id === "calculadora" && (
+                          <span className="text-[10px] font-semibold px-1.5 py-0.5 rounded bg-primary/10 text-primary leading-none">
+                            BETA
+                          </span>
+                        )}
                         {locked && <Lock className="h-3 w-3 text-muted-foreground/50" />}
                       </span>
                     )}
