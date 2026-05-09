@@ -37,7 +37,6 @@ export default defineConfig(({ mode }) => {
     },
   },
   build: {
-    sourcemap: shouldUploadSourcemaps ? true : false,
     rollupOptions: {
       output: {
         manualChunks: {
