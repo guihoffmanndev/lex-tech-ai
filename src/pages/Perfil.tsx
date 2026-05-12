@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { useAuth } from "@/contexts/AuthContext";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
@@ -20,7 +21,6 @@ interface ProfileData {
 export default function Perfil() {
   const { user, supabaseUser } = useAuth();
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [uploading, setUploading] = useState(false);
   const [form, setForm] = useState<ProfileData>({
@@ -31,26 +31,31 @@ export default function Perfil() {
     avatar_url: null,
   });
 
-  useEffect(() => {
-    if (!supabaseUser) return;
-    (async () => {
-      const { data } = await supabase
+  const { isLoading: loading, data: profileData } = useQuery({
+    queryKey: ["profile", supabaseUser?.id],
+    queryFn: async () => {
+      const { data, error } = await supabase
         .from("profiles")
         .select("full_name, email, oab_number, firm_name, avatar_url")
-        .eq("id", supabaseUser.id)
+        .eq("id", supabaseUser!.id)
         .single();
-      if (data) {
-        setForm({
-          full_name: data.full_name || "",
-          email: data.email || "",
-          oab_number: data.oab_number || "",
-          firm_name: data.firm_name || "",
-          avatar_url: data.avatar_url,
-        });
-      }
-      setLoading(false);
-    })();
-  }, [supabaseUser]);
+      if (error) throw error;
+      return data;
+    },
+    enabled: !!supabaseUser,
+    staleTime: 1000 * 60 * 5,
+  });
+
+  useEffect(() => {
+    if (!profileData) return;
+    setForm({
+      full_name: profileData.full_name || "",
+      email: profileData.email || "",
+      oab_number: profileData.oab_number || "",
+      firm_name: profileData.firm_name || "",
+      avatar_url: profileData.avatar_url,
+    });
+  }, [profileData]);
 
   const handleAvatarUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];

@@ -130,7 +130,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     if (supabaseUser) {
       refreshSubscription();
       checkTermsAcceptance(supabaseUser.id);
-      const interval = setInterval(refreshSubscription, 60_000);
+      const interval = setInterval(refreshSubscription, 600_000);
       return () => clearInterval(interval);
     } else {
       setSubscription({ subscribed: false, plan: "free", _loaded: false });
