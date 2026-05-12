@@ -40,3 +40,4 @@ supabase/config.toml
 md files/
 docs/superpowers/
 skills-lock.json
+.worktrees/
