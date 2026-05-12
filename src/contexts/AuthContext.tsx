@@ -127,15 +127,32 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   // Check subscription when user changes
   useEffect(() => {
-    if (supabaseUser) {
-      refreshSubscription();
-      checkTermsAcceptance(supabaseUser.id);
-      const interval = setInterval(refreshSubscription, 600_000);
-      return () => clearInterval(interval);
-    } else {
+    if (!supabaseUser) {
       setSubscription({ subscribed: false, plan: "free", _loaded: false });
       setNeedsTermsAcceptance(false);
+      return;
     }
+
+    refreshSubscription();
+    checkTermsAcceptance(supabaseUser.id);
+    const interval = setInterval(refreshSubscription, 600_000);
+
+    const channel = supabase
+      .channel(`profile-changes:${supabaseUser.id}`)
+      .on("postgres_changes", {
+        event: "UPDATE",
+        schema: "public",
+        table: "profiles",
+        filter: `id=eq.${supabaseUser.id}`,
+      }, () => {
+        refreshSubscription();
+      })
+      .subscribe();
+
+    return () => {
+      clearInterval(interval);
+      supabase.removeChannel(channel);
+    };
   }, [supabaseUser, refreshSubscription, checkTermsAcceptance]);
 
   const login = useCallback(async (email: string, password: string) => {
