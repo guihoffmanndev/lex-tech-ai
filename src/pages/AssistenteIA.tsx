@@ -332,10 +332,10 @@ export default function AssistenteIA() {
         <div className="flex-1 overflow-y-auto p-6 space-y-6">
           {messages.length === 0 && (
             <div className="flex flex-col items-center justify-center h-full text-center">
-              <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-4 overflow-hidden">
+              <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4 overflow-hidden">
                 <img src={chatLogo} alt="Assistente IA" className="h-10 w-10 object-contain" />
               </div>
-              <h2 className="text-xl font-semibold mb-2">Assistente Jurídico IA</h2>
+              <h2 className="text-xl font-semibold mb-2">Lex IA</h2>
               <p className="text-sm text-muted-foreground max-w-md">
                 Faça perguntas sobre legislação brasileira, analise contratos,
                 pesquise jurisprudência do STJ/STF e muito mais.
@@ -352,7 +352,7 @@ export default function AssistenteIA() {
                 className={`flex gap-3 max-w-2xl ${msg.role === "user" ? "flex-row-reverse" : ""}`}
               >
                 {msg.role === "assistant" && (
-                  <div className="shrink-0 w-7 h-7 rounded-full bg-primary/10 flex items-center justify-center mt-1">
+                  <div className="shrink-0 w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center mt-1">
                     <img src={chatLogo} alt="IA" className="h-4 w-4" />
                   </div>
                 )}
