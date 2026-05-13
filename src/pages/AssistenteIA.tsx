@@ -333,7 +333,7 @@ export default function AssistenteIA() {
           {messages.length === 0 && (
             <div className="flex flex-col items-center justify-center h-full text-center">
               <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4 overflow-hidden">
-                <img src={chatLogo} alt="Assistente IA" className="h-10 w-10 object-contain" />
+                <img src={chatLogo} alt="Assistente IA" className="w-full h-full object-cover" />
               </div>
               <h2 className="text-xl font-semibold mb-2">Lex IA</h2>
               <p className="text-sm text-muted-foreground max-w-md">
