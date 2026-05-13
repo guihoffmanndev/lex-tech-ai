@@ -141,7 +141,7 @@ function ResultadoComparativo({
         <CardContent className="space-y-3">
           <div className="grid grid-cols-3 gap-2 text-xs">
             <div className="rounded-md bg-muted/30 p-2 text-muted-foreground" />
-            <div className="rounded-md bg-blue-50 p-2 text-center font-semibold text-blue-700 dark:bg-blue-950/40 dark:text-blue-400">
+            <div className="rounded-md bg-muted p-2 text-center font-semibold text-foreground">
               Price
             </div>
             <div className="rounded-md bg-emerald-50 p-2 text-center font-semibold text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-400">

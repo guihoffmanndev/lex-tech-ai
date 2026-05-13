@@ -15,9 +15,10 @@ const IMG_ACCEPT = "image/*";
 interface AttachmentMenuProps {
   disabled: boolean;
   onFilesSelected: (files: File[]) => void;
+  showLabel?: boolean;
 }
 
-export default function AttachmentMenu({ disabled, onFilesSelected }: AttachmentMenuProps) {
+export default function AttachmentMenu({ disabled, onFilesSelected, showLabel }: AttachmentMenuProps) {
   const docInputRef = useRef<HTMLInputElement>(null);
   const imgInputRef = useRef<HTMLInputElement>(null);
 
@@ -62,9 +63,10 @@ export default function AttachmentMenu({ disabled, onFilesSelected }: Attachment
           <button
             type="button"
             disabled={disabled}
-            className="p-2 rounded-lg hover:bg-secondary text-muted-foreground disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            className="flex items-center gap-1.5 px-2 py-1.5 rounded-lg hover:bg-background text-muted-foreground hover:text-foreground disabled:opacity-50 disabled:cursor-not-allowed transition-colors text-sm"
           >
             <Paperclip className="h-4 w-4" />
+            {showLabel && <span>Arquivos</span>}
           </button>
         </PopoverTrigger>
         <PopoverContent

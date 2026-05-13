@@ -353,7 +353,7 @@ export function RescisaoForm() {
                 </Badge>
               )}
               {tipoDesligamento === "acordo_mutuo" && (
-                <Badge variant="outline" className="text-xs bg-blue-50 text-blue-700 border-blue-200">
+                <Badge variant="outline" className="text-xs bg-muted text-foreground border-border">
                   Multa FGTS 20% + aviso prévio 50% (art. 484-A CLT)
                 </Badge>
               )}

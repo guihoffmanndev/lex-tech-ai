@@ -13,7 +13,7 @@
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 10%;
 
-    --primary: 224 76% 53%;
+    --primary: 0 0% 0%;
     --primary-foreground: 0 0% 100%;
 
     --secondary: 40 6% 96%;
@@ -30,18 +30,18 @@
 
     --border: 220 13% 91%;
     --input: 220 13% 91%;
-    --ring: 224 76% 53%;
+    --ring: 0 0% 0%;
 
     --radius: 0.5rem;
 
     --sidebar-background: 40 6% 97%;
     --sidebar-foreground: 0 0% 10%;
-    --sidebar-primary: 224 76% 53%;
+    --sidebar-primary: 0 0% 0%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 220 60% 97%;
-    --sidebar-accent-foreground: 224 76% 40%;
+    --sidebar-accent: 0 0% 96%;
+    --sidebar-accent-foreground: 0 0% 10%;
     --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 224 76% 53%;
+    --sidebar-ring: 0 0% 0%;
     --sidebar-muted: 0 0% 61%;
 
     /* Custom tokens */
@@ -63,8 +63,8 @@
     --card-foreground: 210 20% 93%;
     --popover: 220 15% 9%;
     --popover-foreground: 210 20% 93%;
-    --primary: 224 76% 53%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 0%;
     --secondary: 220 15% 13%;
     --secondary-foreground: 210 20% 93%;
     --muted: 220 12% 14%;
@@ -75,16 +75,16 @@
     --destructive-foreground: 0 0% 95%;
     --border: 220 12% 16%;
     --input: 220 12% 16%;
-    --ring: 224 76% 53%;
+    --ring: 0 0% 98%;
 
     --sidebar-background: 220 15% 7%;
     --sidebar-foreground: 210 20% 93%;
-    --sidebar-primary: 224 76% 53%;
-    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-primary: 0 0% 98%;
+    --sidebar-primary-foreground: 0 0% 0%;
     --sidebar-accent: 220 15% 12%;
     --sidebar-accent-foreground: 210 20% 93%;
     --sidebar-border: 220 12% 16%;
-    --sidebar-ring: 224 76% 53%;
+    --sidebar-ring: 0 0% 98%;
     --sidebar-muted: 215 10% 50%;
 
     --surface-hover: 220 12% 12%;

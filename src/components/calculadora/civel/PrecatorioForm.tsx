@@ -136,8 +136,8 @@ function ResultadoPrecatorioCard({
             </div>
           </div>
 
-          <div className="rounded-lg border border-blue-200 bg-blue-50 p-3 dark:border-blue-900 dark:bg-blue-950/30">
-            <p className="text-xs text-blue-800 dark:text-blue-300">
+          <div className="rounded-lg border border-border bg-muted/50 p-3">
+            <p className="text-xs text-muted-foreground">
               <strong>Referência:</strong> {resultado.observacao}
             </p>
           </div>

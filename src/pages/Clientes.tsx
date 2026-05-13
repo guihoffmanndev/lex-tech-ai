@@ -137,7 +137,7 @@ export default function Clientes() {
     { label: "Total de Clientes", value: totalClientes, icon: Users, color: "text-primary" },
     { label: "Clientes Ativos", value: clientesAtivos, icon: UserCheck, color: "text-emerald-500" },
     { label: "Com Processos Ativos", value: "—", icon: Scale, color: "text-amber-500" },
-    { label: "Novos este Mês", value: novosEsteMes, icon: CalendarPlus, color: "text-blue-500" },
+    { label: "Novos este Mês", value: novosEsteMes, icon: CalendarPlus, color: "text-foreground" },
   ];
 
   const filterButtons = [

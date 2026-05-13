@@ -43,7 +43,7 @@ export default function RecuperarSenha() {
             </div>
           ) : (
             <>
-              <div className="w-14 h-14 rounded-full bg-blue-100 flex items-center justify-center mx-auto mb-4">
+              <div className="w-14 h-14 rounded-full bg-muted flex items-center justify-center mx-auto mb-4">
                 <Lock className="h-6 w-6 text-primary" />
               </div>
               <h2 className="text-lg font-semibold text-center mb-1">Recuperar senha</h2>

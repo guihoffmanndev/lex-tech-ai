@@ -332,7 +332,7 @@ export default function AssistenteIA() {
         <div className="flex-1 overflow-y-auto p-6 space-y-6">
           {messages.length === 0 && (
             <div className="flex flex-col items-center justify-center h-full text-center">
-              <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4 overflow-hidden">
+              <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mb-4 overflow-hidden">
                 <img src={chatLogo} alt="Assistente IA" className="w-full h-full object-cover" />
               </div>
               <h2 className="text-xl font-semibold mb-2">Lex IA</h2>
@@ -406,38 +406,43 @@ export default function AssistenteIA() {
           </div>
         )}
 
-        {/* Attachment Chips */}
-        <AttachmentChips files={pendingFiles} onRemove={handleRemoveFile} />
-
         {/* Input */}
         <div className="p-4 border-t border-border">
-          <div className="flex items-end gap-2 max-w-3xl mx-auto">
-            <AttachmentMenu
-              disabled={attachmentLimitReached || isLoading}
-              onFilesSelected={handleFilesSelected}
-            />
-            <div className="flex-1 relative">
+          <div className="max-w-3xl mx-auto">
+            <div className="rounded-2xl bg-secondary p-4 shadow-subtle">
+              {pendingFiles.length > 0 && (
+                <div className="mb-3">
+                  <AttachmentChips files={pendingFiles} onRemove={handleRemoveFile} />
+                </div>
+              )}
               <textarea
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={handleKeyDown}
                 placeholder="Faça uma pergunta jurídica..."
-                rows={1}
+                rows={3}
                 disabled={isLoading}
-                className="w-full px-4 py-2.5 bg-secondary border-0 rounded-lg text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 resize-none disabled:opacity-50"
+                className="w-full bg-transparent text-sm placeholder:text-muted-foreground focus:outline-none resize-none disabled:opacity-50 mb-3"
               />
+              <div className="flex items-center justify-between">
+                <AttachmentMenu
+                  disabled={attachmentLimitReached || isLoading}
+                  onFilesSelected={handleFilesSelected}
+                  showLabel
+                />
+                <button
+                  onClick={() => handleSend()}
+                  disabled={isLoading || (!input.trim() && pendingFiles.length === 0)}
+                  className="p-2 rounded-lg bg-primary text-primary-foreground hover:opacity-90 disabled:opacity-50 transition-opacity"
+                >
+                  {isLoading ? (
+                    <Loader2 className="h-4 w-4 animate-spin" />
+                  ) : (
+                    <Send className="h-4 w-4" />
+                  )}
+                </button>
+              </div>
             </div>
-            <button
-              onClick={() => handleSend()}
-              disabled={isLoading || (!input.trim() && pendingFiles.length === 0)}
-              className="p-2 rounded-lg bg-primary text-primary-foreground hover:opacity-90 disabled:opacity-50"
-            >
-              {isLoading ? (
-                <Loader2 className="h-4 w-4 animate-spin" />
-              ) : (
-                <Send className="h-4 w-4" />
-              )}
-            </button>
           </div>
         </div>
       </div>

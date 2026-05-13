@@ -99,7 +99,7 @@ function ResultadoPisCofinsCard({
         <CardContent>
           <div className="grid grid-cols-3 gap-2 text-xs">
             <div className="rounded-md bg-muted/30 p-2" />
-            <div className="rounded-md bg-blue-50 p-2 text-center font-semibold text-blue-700 dark:bg-blue-950/40 dark:text-blue-400">
+            <div className="rounded-md bg-muted p-2 text-center font-semibold text-foreground">
               Cumulativo
             </div>
             <div className="rounded-md bg-emerald-50 p-2 text-center font-semibold text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-400">
@@ -129,7 +129,7 @@ function ResultadoPisCofinsCard({
         </CardContent>
       </Card>
 
-      <div className="rounded-lg border border-blue-200 bg-blue-50 dark:border-blue-800 dark:bg-blue-950/30 p-3 text-xs text-blue-700 dark:text-blue-300 flex gap-2">
+      <div className="rounded-lg border border-border bg-muted/50 p-3 text-xs text-muted-foreground flex gap-2">
         <Info className="h-3 w-3 mt-0.5 shrink-0" />
         <span>
           <strong>RE 574.706 (Tema 69 STF):</strong> O ICMS não compõe a base de cálculo do PIS/COFINS. A exclusão deve ser do ICMS destacado na nota fiscal, não do ICMS pago.

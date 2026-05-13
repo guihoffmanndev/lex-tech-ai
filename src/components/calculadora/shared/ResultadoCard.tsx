@@ -43,7 +43,7 @@ export function ResultadoCard({ resultado, onSalvar, isSaving }: ResultadoCardPr
               resultado.regimeJuros === "post-14905"
                 ? "bg-green-100 text-green-800 border-green-200"
                 : resultado.regimeJuros === "misto"
-                ? "bg-blue-100 text-blue-800 border-blue-200"
+                ? "bg-muted text-foreground border-border"
                 : "bg-amber-100 text-amber-800 border-amber-200"
             }
           >
@@ -89,7 +89,7 @@ export function ResultadoCard({ resultado, onSalvar, isSaving }: ResultadoCardPr
             </CardTitle>
           </CardHeader>
           <CardContent className="px-4 pb-4">
-            <p className="text-lg font-semibold text-blue-600">
+            <p className="text-lg font-semibold text-foreground">
               {formatBRL(correcaoValor)}
             </p>
             <p className="text-xs text-muted-foreground">

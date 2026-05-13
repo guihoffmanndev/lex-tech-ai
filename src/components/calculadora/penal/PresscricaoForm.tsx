@@ -125,8 +125,8 @@ function ResultadoPrescricaoCard({
               </p>
             </div>
           ) : (
-            <div className="rounded-lg border border-blue-200 bg-blue-50 p-3 dark:border-blue-900 dark:bg-blue-950/30">
-              <p className="text-xs text-blue-800 dark:text-blue-300">
+            <div className="rounded-lg border border-border bg-muted/50 p-3">
+              <p className="text-xs text-foreground">
                 <strong>Atenção:</strong> Esta calculadora apura o prazo prescricional base.
                 Verifique os marcos interruptivos (art. 117 CP): recebimento da denúncia,
                 pronúncia, decisão confirmatória, sentença condenatória recorrível.

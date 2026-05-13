@@ -88,7 +88,7 @@ function ResultadoSimples({
         </CardHeader>
         <CardContent className="space-y-3">
           {fatorR && (
-            <div className="rounded-lg bg-blue-50 dark:bg-blue-950/30 p-3 text-xs text-blue-700 dark:text-blue-300">
+            <div className="rounded-lg bg-muted/50 p-3 text-xs text-muted-foreground">
               <strong>Fator R:</strong> {(fatorR.fatorR.times(100)).toDecimalPlaces(2).toString()}%
               {" "}({fatorR.fatorR.gte("0.28") ? "≥ 28% → Anexo III" : "< 28% → Anexo V"})
             </div>

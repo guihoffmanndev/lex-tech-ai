@@ -177,7 +177,7 @@ export default function TemplatesTab() {
                   </div>
                   <Badge variant="secondary" className="text-[10px] shrink-0">{t.categoria}</Badge>
                   {t.docx_file_path && (
-                    <Badge variant="outline" className="text-[10px] shrink-0 border-blue-300 text-blue-600">
+                    <Badge variant="outline" className="text-[10px] shrink-0 border-border text-muted-foreground">
                       .docx
                     </Badge>
                   )}
