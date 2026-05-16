@@ -45,7 +45,6 @@ const gestaoMenuItems = [
 { id: "lex-pilot", label: "Lex Pilot", icon: Stamp, path: "/lex-pilot" },
 { id: "calculadora", label: "Calculadora", icon: Calculator, path: "/calculadora" }];
 
-const allMenuItems = [...topMenuItems, ...gestaoMenuItems];
 
 const recentTypeIcons: Record<string, any> = {
   documento: FileText,
@@ -96,7 +95,7 @@ export function AppSidebar({ activePage, collapsed, onToggleCollapse }: AppSideb
         }>
         
         {/* Logo */}
-        <div className="flex items-center justify-between px-4 h-14 border-b border-sidebar-border">
+        <div className="flex items-center justify-between px-4 h-14">
           <div className="flex items-center gap-2 min-w-0">
             
             {!collapsed &&
@@ -131,11 +130,11 @@ export function AppSidebar({ activePage, collapsed, onToggleCollapse }: AppSideb
                 <li key={item.id}>
                   <button
                     onClick={() => locked ? setShowUpgrade(true) : navigate(item.path)}
-                    className={`w-full flex items-center gap-2.5 px-2 py-1.5 rounded-md text-sm transition-colors ${
+                    className={`w-full flex items-center gap-2.5 px-2 py-1.5 rounded-md text-[15px] transition-colors ${
                     isActive ?
-                    "bg-sidebar-accent text-sidebar-accent-foreground border-l-2 border-primary font-medium" :
+                    "bg-sidebar-accent text-sidebar-foreground font-medium" :
                     locked ? "text-muted-foreground/50 hover:bg-accent" :
-                    "text-sidebar-foreground hover:bg-accent"} ${
+                    "text-sidebar-foreground/60 hover:bg-accent"} ${
                     collapsed ? "justify-center" : ""}`}
                     title={collapsed ? item.label : undefined}>
                     
@@ -151,8 +150,8 @@ export function AppSidebar({ activePage, collapsed, onToggleCollapse }: AppSideb
             })}
           </ul>
 
-          {/* Separator + Gestão */}
-          <div className="my-3 mx-2 border-t border-sidebar-border" />
+          <div className="my-7" />
+
           {!collapsed &&
           <p className="px-2 mb-1 text-[11px] font-medium uppercase tracking-wider text-sidebar-muted">
               Gestão
@@ -169,14 +168,14 @@ export function AppSidebar({ activePage, collapsed, onToggleCollapse }: AppSideb
                 <li key={item.id}>
                   <button
                     onClick={() => locked ? setShowUpgrade(true) : navigate(item.path)}
-                    className={`w-full flex items-center gap-2.5 px-2 py-1.5 rounded-md text-sm transition-colors ${
+                    className={`w-full flex items-center gap-2.5 px-2 py-1.5 rounded-md text-[15px] transition-colors ${
                     isActive ?
-                    "bg-sidebar-accent text-sidebar-accent-foreground border-l-2 border-primary font-medium" :
+                    "bg-sidebar-accent text-sidebar-foreground font-medium" :
                     locked ? "text-muted-foreground/50 hover:bg-accent" :
-                    "text-sidebar-foreground hover:bg-accent"} ${
+                    "text-sidebar-foreground/60 hover:bg-accent"} ${
                     collapsed ? "justify-center" : ""}`}
                     title={collapsed ? item.label : undefined}>
-                    
+
                     <item.icon className="h-4 w-4 shrink-0" />
                     {!collapsed && (
                       <span className="flex-1 text-left flex items-center gap-1.5">

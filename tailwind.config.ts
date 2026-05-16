@@ -14,8 +14,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ['"Satoshi"', 'system-ui', 'sans-serif'],
-        serif: ['"Satoshi"', 'sans-serif'],
+        sans: ['"DM Sans"', 'system-ui', 'sans-serif'],
+        serif: ['"DM Sans"', 'sans-serif'],
         mono: ['monospace'],
       },
       colors: {

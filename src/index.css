@@ -38,7 +38,7 @@
     --sidebar-foreground: 0 0% 10%;
     --sidebar-primary: 0 0% 0%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 0 0% 96%;
+    --sidebar-accent: 0 0% 93%;
     --sidebar-accent-foreground: 0 0% 10%;
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 0 0% 0%;
@@ -53,7 +53,7 @@
 
     --shadow-subtle: 0 1px 3px rgba(0, 0, 0, 0.08);
 
-    font-family: 'Satoshi', system-ui, sans-serif;
+    font-family: 'DM Sans', system-ui, sans-serif;
   }
 
   .dark {
@@ -125,7 +125,7 @@
   }
 
   h1, h2, h3, h4 {
-    font-family: 'Satoshi', sans-serif;
+    font-family: 'DM Sans', sans-serif;
     font-weight: 600;
     @apply text-foreground;
   }
