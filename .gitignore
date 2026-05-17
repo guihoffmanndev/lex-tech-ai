@@ -31,6 +31,8 @@ dist-ssr
 *.sw?
 supabase/.temp/
 supabase/functions
+supabase/functions/_shared
+supabase/.branches/
 supabase/migrations
 supabase/config.toml
 .agents
